@@ -25,8 +25,9 @@ const updateSlider = (index) => {
 }
 
 const shiftSlider = (step) => {
-    const current = document.querySelector('.slider__item_active');
-    let currentSliderItem = sliderItems.indexOf(current);
+    let currentSliderItem = sliderItems.findIndex((element) => {
+        return element.classList.contains('slider__item_active')
+    });
     currentSliderItem = (currentSliderItem + sliderItems.length + step) % sliderItems.length;
     updateSlider(currentSliderItem);
 }
