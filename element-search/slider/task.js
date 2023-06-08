@@ -24,12 +24,11 @@ const updateSlider = (index) => {
     selectCurrentSliderDot(index);
 }
 
+const getCurrentIndex = () => sliderItems.findIndex(element => element.classList.contains('slider__item_active'));
+
 const shiftSlider = (step) => {
-    let currentSliderItem = sliderItems.findIndex((element) => {
-        return element.classList.contains('slider__item_active')
-    });
-    currentSliderItem = (currentSliderItem + sliderItems.length + step) % sliderItems.length;
-    updateSlider(currentSliderItem);
+    let currentIndex = (getCurrentIndex() + sliderItems.length + step) % sliderItems.length;
+    updateSlider(currentIndex);
 }
 
 const getNextItem = () => {
@@ -45,7 +44,9 @@ arrowPrev.onclick = getPrevItem;
 
 for(let i=0; i < sliderDots.length; i++) {
     sliderDots[i].onclick = () => {
-        updateSlider(i)
+        if (i !== getCurrentIndex()){
+            updateSlider(i)
+        }
     }
 }
 
