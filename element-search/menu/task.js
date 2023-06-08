@@ -8,12 +8,12 @@ const closeDropdowns = () => {
 };
 
 [...menuLinks].forEach(element => {
-    element.onclick = (event) => {
+    element.onclick = () => {
         closeDropdowns();
         const dropdownMenu = element.closest('.menu__item').querySelector('.menu');
         if (dropdownMenu) {
-            event.preventDefault();
-            dropdownMenu.classList.add('menu_active')
+            dropdownMenu.classList.add('menu_active');
+            return false;
         }
     }
 });
