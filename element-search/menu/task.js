@@ -7,23 +7,26 @@ const closeDropdowns = (menu) => {
     });
 };
 
-const hasActiveSubmenu = (element) => {
+const hasActiveDropdown = (element) => {
     return element.closest('.menu__item').querySelector('.menu_active');
+}
+
+const hasDropdown = (element) => {
+    return element.closest('.menu__item').querySelector('.menu');
 }
 
 [...menuLinks].forEach(element => {
     element.onclick = () => {
-        const subMenu = hasActiveSubmenu(element);
-        console.log(subMenu);
-        if (subMenu) {
-            subMenu.classList.remove('menu_active')
+        const activeDropdown = hasActiveDropdown(element);
+        if (activeDropdown) {
+            activeDropdown.classList.remove('menu_active')
             return false;
         }
         const menu = element.closest('.menu');
         closeDropdowns(menu);
-        const dropdownMenu = element.closest('.menu__item').querySelector('.menu');
-        if (dropdownMenu) {
-            dropdownMenu.classList.add('menu_active');
+        const dropdown = hasDropdown(element);
+        if (dropdown) {
+            dropdown.classList.add('menu_active');
             return false;
         }
     }
