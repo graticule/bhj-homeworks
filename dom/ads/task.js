@@ -1,29 +1,27 @@
-class Rotator {
-    constructor(rotator){
-        this.rotator = rotator;
-        this.cases = Array.from(this.rotator.children);
-        this.getNext = this.getNext.bind(this);
-        this.active = 0;
-    }
+// Повышенный уровень сложности
 
-    getNext() {
-        this.deactivate(this.active);
-        this.active = (this.active + 1) % this.cases.length;
-        this.activate(this.active);
-    }
+const activate = (element) => {
+    element.classList.add('rotator__case_active')
+    element.style.color = element.dataset['color'];
+}
 
-    deactivate(index) {
-        this.cases[index].classList.remove('rotator__case_active');
+const getNext = (previous) => {
+    previous.classList.remove('rotator__case_active');
+    let element = previous.nextElementSibling;
+    if (element === null) {
+        element = previous.parentElement.firstElementChild;
     }
-
-    activate(index) {
-        this.cases[index].classList.add('rotator__case_active');
-    }
- }
+    activate(element);
+    setTimeout(getNext, element.dataset['speed'], element);
+} 
 
 Array.from(document.querySelectorAll('.rotator'))
-.map(e => new Rotator(e))
 .forEach( rotator => {
-    setInterval(rotator.getNext, 1000)
-}
+    element = rotator.querySelector('.rotator__case_active');
+    if (element === null) {
+        element = rotator.firstElementChild;
+    }
+    activate(element);
+    setTimeout(getNext, element.dataset['speed'], element);
+    }
 )
