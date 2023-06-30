@@ -28,6 +28,9 @@ fsControl.addEventListener('click', e => {
 bgControl.addEventListener('click', e => {
     e.preventDefault();
     const target = e.target;
+    if (target.tagName !== 'A') {
+        return;
+    }
     const current = bgControl.querySelector('.color_active');
     if (target === current) {
         return
@@ -45,6 +48,9 @@ bgControl.addEventListener('click', e => {
 colorControl.addEventListener('click', e => {
     e.preventDefault();
     const target = e.target;
+    if (target.tagName !== 'A') {
+        return;
+    }
     const current = colorControl.querySelector('.color_active');
     if (target === current) {
         return
