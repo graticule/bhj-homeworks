@@ -81,12 +81,23 @@ class Autocomplete {
         value: 'Содержимое атрибута value'
       }
     */
-    return [
-      {
-        text: 'Чубакка',
-        value: '1'
+    let result = Array.from(this.input.querySelectorAll('option'))
+    .map( el => {
+      return {
+        text: el.textContent,
+        value: el.value,
       }
-    ];
+    })
+    .filter(el => el.text.startsWith(text));
+
+    return result;
+    
+    // return [
+    //   {
+    //     text: 'Чубакка',
+    //     value: '1'
+    //   }
+    // ];
   }
 }
 
