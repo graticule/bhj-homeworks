@@ -81,7 +81,7 @@ class Autocomplete {
         value: 'Содержимое атрибута value'
       }
     */
-    let result = Array.from(this.input.querySelectorAll('option'))
+    let result = Array.from(this.input.options)
     .map( el => {
       return {
         text: el.textContent,
