@@ -1,5 +1,5 @@
 function checkChild(element) {
-    const childUl = element?.closest('li')?.querySelector('ul');
+    const childUl = element.closest('li').querySelector('ul');
     if (childUl !== null) {
         const children = Array.from(childUl.querySelectorAll('.interest__check'));
         element.indeterminate = false;
@@ -11,7 +11,7 @@ function checkChild(element) {
 }
 
 function checkParent(element) {
-    const childUl = element?.closest('li')?.querySelector('ul');
+    const childUl = element.closest('li').querySelector('ul');
     if (childUl !== null) {
         const children = Array.from(childUl.querySelectorAll('.interest__check'));
         if (children.length > 0) {
@@ -27,9 +27,9 @@ function checkParent(element) {
             }
         }
     }
-    const parentLi = element?.closest('ul')?.closest('li');
+    const parentLi = element.closest('ul').closest('li');
     if (parentLi !== null) {
-        const parent = parentLi?.querySelector('.interest__check');
+        const parent = parentLi.querySelector('.interest__check');
         if (parent !== null) {
             checkParent(parent);
         }
