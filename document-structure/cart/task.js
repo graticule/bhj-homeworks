@@ -5,21 +5,11 @@ class Cart {
     }
 
     addItem(product) {
-        let isNew = true;
-        this.items.forEach(el => {
-            console.log(el)
-            console.log(el.dataset.id, product.id)
-            if( el.dataset.id === product.id) {
-                isNew = false;
-                const counter = el.querySelector('.cart__product-count');
-                counter.textContent = +counter.textContent + product.count;
-            }
-        })
-        if (isNew) {
-            // <div class="cart__product" data - id="1" >
-            //     <img class="cart__product-image" src="image.png">
-            //     <div class="cart__product-count">20</div>
-            // </div>
+        const productInCart = this.items.find(el => el.dataset.id === product.id);
+        if (productInCart) {
+            const counter = productInCart.querySelector('.cart__product-count');
+            counter.textContent = +counter.textContent + product.count;
+        } else {
             const item = document.createElement('div');
             item.classList.add('cart__product');
             item.dataset.id = product.id;
@@ -70,8 +60,6 @@ class Product {
         this.count = value;
         this.counter.textContent = this.count;
     }
-
-    
 }
 
 products = [...document.querySelectorAll('.product')].map(el => new Product(el));
