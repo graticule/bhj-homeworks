@@ -5,8 +5,12 @@ const taskList = document.getElementById('tasks__list')
 buttonAdd.addEventListener('click', e => {
     e.preventDefault();
 
-    const text = input.value;
+    const text = input.value.trim();
     input.value = '';
+
+    if (text === '') {
+        return;
+    }
 
     const newTask = document.createElement('div')
     newTask.classList.add('task');
@@ -21,10 +25,4 @@ buttonAdd.addEventListener('click', e => {
     newTask.querySelector('a').addEventListener('click', () => {
         taskList.removeChild(newTask);
     })
-})
-
-addEventListener('keyup', e => {
-    if (e.key === 'Enter' && input.value !== '') {
-        buttonAdd.click();
-    }
 })
